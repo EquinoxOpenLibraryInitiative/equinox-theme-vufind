@@ -1,0 +1,117 @@
+<?php
+  // Load search actions and settings (if any):
+  $options = $this->searchOptions($searchClassId);
+  $basicSearch = $options->getSearchAction();
+  $advSearch = $options->getAdvancedSearchAction();
+  $noJsSupport = $this->config()->nonJavascriptSupportEnabled();
+?>
+<?php if (!empty($facetList)): ?>
+  <div class="search-home-facets">
+    <?php foreach ($facetList as $field => $details): ?>
+      <?php $labelHeading = $this->transEsc('home_browse_by_facet', ['%%facet%%' => $this->translate($details['label'])]); ?>
+      <?php if ($isHierarchy = in_array($field, $hierarchicalFacets ?? [])):
+          $this->headScript()->appendFile('vendor/jsTree/jstree.min.js');
+          $this->headScript()->appendFile('facets.js');
+          $sort = $hierarchicalFacetSortOptions[$field] ?? $hierarchicalFacetSortOptions['*'] ?? 'all';
+          $script = <<<JS
+$(document).ready(function() {
+  $('#facet_{$this->escapeHtml($field)}_container').removeClass('hide');
+  initFacetTree($('#facet_{$this->escapeHtml($field)}'), false);
+});
+JS;
+          echo $this->inlineScript(\Laminas\View\Helper\HeadScript::SCRIPT, $script, 'SET');
+        ?>
+        <div id="facet_<?=$this->escapeHtml($field)?>_container" class="home-facet <?=$this->escapeHtmlAttr($field)?> hide">
+          <h2><?=$labelHeading?></h2>
+          <div id="facet_<?=$this->escapeHtml($field)?>" class="jstree-facet"
+              data-source="<?=$this->escapeHtml($this->searchClassId)?>"
+              data-facet="<?=$this->escapeHtml($field)?>"
+              data-path="<?=$this->url($basicSearch)?>"
+              data-exclude="0"
+              data-operator="AND"
+              data-exclude-title="<?=$this->transEscAttr('exclude_facet')?>"
+              data-sort="<?=$sort?>">
+          </div>
+        </div>
+        <noscript>
+          <?php if (!$noJsSupport): ?>
+            <h2><?=$labelHeading?></h2>
+            <?=$this->transEsc('Please enable JavaScript.')?>
+          <?php endif; ?>
+      <?php endif; ?>
+      <?php if (!$isHierarchy || $noJsSupport): // do we need regular display? ?>
+        <?php $sortedList = $this->sortFacetList($results, $field, $details['list'], $basicSearch); ?>
+
+
+
+        <div class="home-facet <?=$this->escapeHtmlAttr($field) ?>">
+          <h2>
+            <?=$labelHeading?>
+            <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.72859 7.36598L0 1.63739L1.63641 0.000976563L9.00141 7.36598L1.63641 14.731L0 13.0946L5.72859 7.36598Z" fill="white"/>
+            </svg>
+
+          </h2>
+          <div class="home-facet-container">
+            <ul class="home-facet-list">
+              <?php
+                // Special case: two columns for LC call numbers...
+                $maxListLength = $field == 'callnumber-first'
+                  ? $columnSize * 2 : $columnSize;
+
+                // Special case: custom URLs for collections...
+                $moreUrl = $field == 'hierarchy_top_title'
+                  ? $this->url('collections-home') : $this->url($advSearch);
+
+                // Convenience variable:
+                $currentListLength = count($sortedList);
+              ?>
+              <?php $i = 0; foreach ($sortedList as $url => $value):
+                  // Special case: custom URLs for collections...
+                  if ($field == 'hierarchy_top_title') {
+                      $url = $this->url('collections-bytitle') . '?title=' . urlencode($value);
+                  }
+                ?>
+                <li><a href="<?=$url?>"><?=$this->escapeHtml(empty($value) ? '-' : $value)?></a></li>
+                <?php if (++$i >= $currentListLength) break; // end of list? bail out! ?>
+                <?php if ($i >= $maxListLength): // list too long? show more link! ?>
+                  <li><a href="<?=$moreUrl?>"><strong><?=$this->transEsc("More options")?>...</strong></a></li>
+                  <?php break; ?>
+                <?php elseif ($i % $columnSize === 0): // end of column? insert break! ?>
+                  </ul><ul class="home-facet-list">
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        </div>
+      
+
+
+
+
+      <?php endif; ?>
+      <?php if ($isHierarchy): // close tag opened in matching if above ?>
+        </noscript>
+      <?php endif; ?>
+    <?php endforeach; ?>
+
+
+    <div class="home-facet find-more">
+     
+        <h2><?=$this->transEsc('Find More')?>
+        <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.72859 7.36598L0 1.63739L1.63641 0.000976563L9.00141 7.36598L1.63641 14.731L0 13.0946L5.72859 7.36598Z" fill="white"/>
+        </svg>
+      </h2>
+       <div class="home-facet-container" style="display: block;">
+        <ul>
+          <li><a href="<?=$this->url('browse-home')?>"><?=$this->transEsc('Browse the Catalog')?></a></li>
+          <li><a href="<?=$this->url('alphabrowse-home')?>"><?=$this->transEsc('Browse Alphabetically')?></a></li>
+          <li><a href="<?=$this->url('channels-home')?>"><?=$this->transEsc('channel_explore')?></a></li>
+          <li><a href="<?=$this->url('search-newitem')?>"><?=$this->transEsc('New Items')?></a></li>
+        </ul>
+       </div>
+     
+    </div>
+  </div>
+<?php endif; ?>

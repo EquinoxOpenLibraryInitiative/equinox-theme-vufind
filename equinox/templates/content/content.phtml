@@ -1,0 +1,9 @@
+
+
+
+    <div class="side_bar_left <?=$this->layoutClass('sidebar')?>" id="myresearch-sidebar">
+      <?=$this->context($this)->renderInContext("myresearch/menu.phtml", ['active' => 'fines'])?>
+    </div>
+<?=$this->partial("content/$page.phtml", []) ?>
+
+

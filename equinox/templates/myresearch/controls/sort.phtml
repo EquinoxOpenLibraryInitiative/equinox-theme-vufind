@@ -1,0 +1,19 @@
+<div class="search-controls">
+  <form class="search-sort" action="<?=$this->currentPath()?>" method="get" name="sort">
+    <label for="sort_options_1"><?=$this->transEsc('Sort')?></label>
+    <select id="sort_options_1" name="sort" class="jumpMenu form-control">
+      <?php foreach ($this->sortList as $sortType => $sortData): ?>
+        <option value="<?=$this->escapeHtmlAttr($sortType)?>"<?=$sortData['selected']?' selected="selected"':''?>><?=$this->transEsc($sortData['desc'])?></option>
+      <?php endforeach; ?>
+    </select>
+    <noscript><input type="submit" class="btn btn-default" value="<?=$this->transEscAttr("Set")?>" /></noscript>
+  </form>
+
+
+  <span class="checkout_select_icon">
+    <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.364 4.95L11.314 0L12.728 1.414L6.364 7.778L0 1.414L1.414 0L6.364 4.95Z" fill="white"/>
+    </svg>
+  </span>
+
+</div>

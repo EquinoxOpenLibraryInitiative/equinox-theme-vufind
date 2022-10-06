@@ -1,0 +1,305 @@
+<?php $account = $this->auth()->getManager(); ?>
+<div class="top_header_content">
+<div class="banner container navbar">
+  <div class="navbar-header">
+   <div class="mobile_navbar_new" style="display: inline-block">
+   <a href="<?php if(!$account->isLoggedIn()): ?>  <?=$this->url('myresearch-userlogin')?> <?php else: ?> <?=$this->url('myresearch-home', [], ['query' => ['redirect' => 0]])?><?php endif ?>" class="mobile_login_button"><?php if(!$account->isLoggedIn()): ?> Login<?php else: ?> Account<?php endif ?></a>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-collapse" aria-hidden="true">
+      <i class="fa fa-bars"></i>
+    </button>
+   </div>
+    <a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="/vufind/themes/equinox/images/small/equinox-logo-white.svg" alt="Site Logo"></a>
+  </div>
+  <?php if (!isset($this->layout()->renderingError)): ?>
+    <div class="collapse navbar-collapse" id="header-collapse">
+      <nav>
+        <ul class="nav navbar-nav navbar-right flip">
+          <?php if ($this->feedback()->tabEnabled()): ?>
+            <li>
+              <a id="feedbackLink" data-lightbox href="<?=$this->url('feedback-home') ?>"><i class="fa fa-envelope" aria-hidden="true"></i> <?=$this->transEsc("Feedback")?></a>
+            </li>
+          <?php endif; ?>
+          <?php $cart = $this->cart(); if ($cart->isActive()): ?>
+            <li id="cartSummary">
+              <a id="cartItems" data-lightbox title="<?=$this->transEscAttr('View Book Bag')?>" href="<?=$this->url('cart-home')?>">
+                <i class="fa fa-suitcase" aria-hidden="true"></i> <strong><?=count($cart->getItems())?></strong> <?=$this->transEsc('items')?>
+                <span class="full<?=!$cart->isFull() ? ' hidden' : '' ?>">(<?=$this->transEsc('bookbag_full') ?>)</span>
+              </a>
+            </li>
+
+
+             
+
+          <?php endif; ?>
+
+
+
+
+        
+
+
+
+
+
+           
+
+
+
+
+
+
+
+          <!-- <?php if (isset($this->layout()->themeOptions) && count($this->layout()->themeOptions) > 1): ?>
+            <li class="theme dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->transEsc("Theme")?> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <?php foreach ($this->layout()->themeOptions as $current): ?>
+                  <li<?=$current['selected'] ? ' class="active"' : ''?>>
+                    <a href="<?=$this->escapeHtmlAttr($this->url()->addQueryParameters(['ui' => $current['name']])) ?>" rel="nofollow">
+                      <?=$this->transEsc($current['desc']) ?>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </li>
+          <?php endif; ?> -->
+
+          <!-- <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1): ?>
+            <li class="language dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->transEsc("Language")?> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <?php foreach ($this->layout()->allLangs as $langCode => $langName): ?>
+                  <li<?=$this->layout()->userLang == $langCode ? ' class="active"' : ''?>>
+                    <a href="<?=$this->escapeHtmlAttr($this->url()->addQueryParameters(['lng' => $langCode])) ?>" rel="nofollow">
+                      <?=$this->displayLanguageOption($langName) ?>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </li>
+          <?php endif; ?> -->
+
+          <li><a href="#">Programs &amp; Services</a></li>
+          <li><a href="#">Get a Library Card</a></li>
+          <?php if (is_object($account) && $account->loginEnabled()): // hide login/logout if unavailable ?>
+         <li class="logoutOptions<?php if($account->dropdownEnabled()): ?> with-dropdown<?php endif ?><?php if(!$account->isLoggedIn()): ?> hidden<?php endif ?>">
+              <a href="<?=$this->url('myresearch-home', [], ['query' => ['redirect' => 0]])?>"><i id="account-icon" class="fa fa-user-circle" aria-hidden="true"></i> <?=$this->transEsc("Your Account")?></a>
+            </li>
+            <?php if($account->dropdownEnabled()): ?>
+              <li id="login-dropdown" class="dropdown<?php if(!$account->isLoggedIn()): ?> hidden<?php endif ?>">
+                <a href="#" data-toggle="dropdown"><i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-menu">
+                  <?=$this->render('myresearch/menu'); ?>
+                </div>
+              </li> 
+            <?php endif; ?>
+
+
+          <li class="logoutOptions<?php if(!$account->isLoggedIn()): ?> hidden<?php endif ?>">
+              <a href="<?=$this->url('myresearch-logout')?>" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> <?=$this->transEsc("Log Out")?></a>
+            </li>
+
+
+
+            <!-- <li class="logoutOptions<?php if(!$account->isLoggedIn()): ?> hidden<?php endif ?>">
+              <a href="<?=$this->url('content-page', ['page' => 'helptips']) ?>"><?=$this->transEsc('Help Tips')?></a>
+            </li> -->
+
+
+            <li id="loginOptions"<?php if($account->isLoggedIn()): ?> class="hidden"<?php endif ?>>
+              <?php if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))): ?>
+                <a href="<?=$this->url('myresearch-userlogin')?>"><i class="fa fa-sign-in" aria-hidden="true"></i> <?=$this->transEsc("Institutional Login")?></a>
+              <?php else: ?>
+                <a href="<?=$this->url('myresearch-userlogin')?>" ><i class="fa fa-sign-in" aria-hidden="true"></i> <?=$this->transEsc("Login")?></a>
+              <?php endif; ?>
+            </li>
+          <?php endif; ?>
+
+
+        </ul>
+      </nav>
+    </div>
+  <?php endif; ?>
+</div>
+
+</div>
+
+
+<?php
+
+$checktemplate = $this->templateName;
+
+if($checktemplate == "advanced"){
+
+
+?>
+
+
+<div class="welcome_banner_area_wrap"><!--Welcome Banner Area Start-->
+
+<div class="welcome_banner_content_wraper">
+		
+<div class="welcome_banner-right">
+  <img src="/vufind/themes/equinox/images/small/home-banner-logo.png" alt="banner Image">
+</div>
+</div>
+
+<img class="bannerbg" src="/vufind/themes/equinox/images/small/banner-imgs.jpg" alt="bannerbg">
+</div>
+
+
+<?php }?>
+
+<?php if ($this->layout()->searchbox !== false): ?>
+  <div class="welcome_banner_area_wrap"><!--Welcome Banner Area Start-->
+
+<div class="welcome_banner_content_wraper">
+		
+<div class="welcome_banner-right">
+  <img src="/vufind/themes/equinox/images/small/home-banner-logo.png" alt="banner Image">
+</div>
+</div>
+
+<img class="bannerbg" src="/vufind/themes/equinox/images/small/banner-imgs.jpg" alt="bannerbg">
+</div>
+
+
+
+
+  <div class="search navbar search_wrapper">
+  <h2>Browse through all of the library’s resources</h2>
+    <div class="nav searchbox hidden-print" role="search">
+      <?=$this->layout()->searchbox ?>
+    </div>
+  </div>
+<?php endif; ?>
+
+<?php 
+
+
+$checktemplate = "template-dir-".$this->templateDir." template-name-".$this->templateName;
+
+if($checktemplate == "template-dir-search template-name-home"){
+
+
+  $checkdisplay = "display: none!important";
+
+
+}
+
+
+?>
+
+<div class="search-home-facets" style="<?php echo $checkdisplay ?>">
+                              
+
+
+        <div class="home-facet dewey-hundreds">
+          <h2>
+            Browse by Call Number            <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.72859 7.36598L0 1.63739L1.63641 0.000976563L9.00141 7.36598L1.63641 14.731L0 13.0946L5.72859 7.36598Z" fill="white"></path>
+            </svg>
+
+          </h2>
+          <div class="home-facet-container">
+            <ul class="home-facet-list">
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22000+-+Computer+science%2C+information%2C+general+works%22">000 - Computer science, information, general works</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22100+-+Philosophy+%26+psychology%22">100 - Philosophy &amp; psychology</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22200+-+Religion%22">200 - Religion</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22300+-+Social+sciences%22">300 - Social sciences</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22400+-+Language%22">400 - Language</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22500+-+Natural+sciences+and+mathematics%22">500 - Natural sciences and mathematics</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22600+-+Technology+%28Applied+sciences%29%22">600 - Technology (Applied sciences)</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22700+-+The+arts%22">700 - The arts</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22800+-+Literature+%28Belles-lettres%29+and+rhetoric%22">800 - Literature (Belles-lettres) and rhetoric</a></li>
+                <li><a href="/vufind/Search/Results?filter%5B%5D=dewey-hundreds%3A%22900+-+History+%26+geography%22">900 - History &amp; geography</a></li>
+              </ul>
+          </div>
+        </div>
+      
+
+
+
+
+                                          
+
+
+        <div class="home-facet language">
+          <h2>
+            Browse by Language            <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.72859 7.36598L0 1.63739L1.63641 0.000976563L9.00141 7.36598L1.63641 14.731L0 13.0946L5.72859 7.36598Z" fill="white"></path>
+            </svg>
+
+          </h2>
+          <div class="home-facet-container">
+            <ul class="home-facet-list">
+                                            <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22Arabic%22">Arabic</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22Chinese%22">Chinese</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22Dutch%22">Dutch</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22English%22">English</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22Finnish%22">Finnish</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22French%22">French</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22German%22">German</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22Gujarati%22">Gujarati</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22Hindi%22">Hindi</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=language%3A%22Italian%22">Italian</a></li>
+                                                  <li><a href="/vufind/Search/Advanced"><strong>More options...</strong></a></li>
+                              </ul>
+          </div>
+        </div>
+      
+
+
+
+
+                                          
+
+
+        <div class="home-facet format">
+          <h2>
+            Browse by Format            <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.72859 7.36598L0 1.63739L1.63641 0.000976563L9.00141 7.36598L1.63641 14.731L0 13.0946L5.72859 7.36598Z" fill="white"></path>
+            </svg>
+
+          </h2>
+          <div class="home-facet-container">
+            <ul class="home-facet-list">
+                                            <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22Audio%22">Audio</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22Book%22">Book</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22Book+Chapter%22">Book Chapter</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22Cassette%22">Cassette</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22CD%22">CD</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22Conference+Proceeding%22">Conference Proceeding</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22DVD%22">DVD</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22eBook%22">eBook</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22Electronic%22">Electronic</a></li>
+                                                              <li><a href="/vufind/Search/Results?filter%5B%5D=format%3A%22Government+Document%22">Government Document</a></li>
+                                                  <li><a href="/vufind/Search/Advanced"><strong>More options...</strong></a></li>
+                              </ul>
+          </div>
+        </div>
+      
+
+
+
+
+                
+
+    <div class="home-facet find-more">
+     
+        <h2>Find More        <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.72859 7.36598L0 1.63739L1.63641 0.000976563L9.00141 7.36598L1.63641 14.731L0 13.0946L5.72859 7.36598Z" fill="white"></path>
+        </svg>
+      </h2>
+       <div class="home-facet-container" style="display: block;">
+        <ul>
+          <li><a href="/vufind/Browse/Home">Browse the Catalog</a></li>
+          <li><a href="/vufind/Alphabrowse/Home">Browse Alphabetically</a></li>
+          <li><a href="/vufind/Channels/Home">Explore Channels</a></li>
+       
+          <li><a href="/vufind/Search/NewItem">New Items</a></li>
+        </ul>
+       </div>
+     
+    </div>
+  </div>

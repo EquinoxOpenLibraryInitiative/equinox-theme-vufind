@@ -1,0 +1,76 @@
+<footer class="hidden-print">
+  <div class="update_footer_list_top_content">
+  <div class="footer-container">
+    <div class="footer-column">
+        <div class="single_footer_top_element"><!--Single Element-->
+          <h4>Library Name</h4>
+          <ul>
+            <li>55 Main Street</li>
+            <li>Atlanta, GA 30368</li>
+            <li>Tel. 555-555-5555</li>
+            <li>Fax 555-555-5555</li>
+          </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-column">
+    <div class="single_footer_top_element"><!--Single Element-->
+      <h4>Library Hours</h4>
+      <ul>
+        <li>Mon to Thurs: 9am – 8pm</li>
+        <li>Friday: 9am – 6pm</li>
+        <li>Saturday: 9am – 5pm</li>
+        <li>Sunday: 1pm – 4pm</li>
+      </ul>
+
+    </div>
+    </div>
+    <div class="footer-column" style="display: flex;justify-content: center;">
+    <div class="single_footer_top_element">
+      <?php $this->slot('footer-left')->start(); ?>
+        <h4><?=$this->transEsc('Search Options')?></h4>
+        <ul>
+          <li><a href="<?=$this->url('search-history')?>"><?=$this->transEsc('Search History')?></a></li>
+          <li><a href="<?=$this->url('search-advanced')?>"><?=$this->transEsc('Advanced Search')?></a></li>
+        </ul>
+      <?=$this->slot('footer-left')->end(); ?>
+    </div>
+    </div>
+    <div class="footer-column" style="display: flex;justify-content: end;">
+    <div class="single_footer_top_element">
+      <?php $this->slot('footer-right')->start(); ?>
+        <h4><?=$this->transEsc('Need Help?')?></h4>
+        <ul>
+          <li><a href="<?=$this->url('help-home')?>?topic=search&amp;_=<?=time() ?>" class="help-link"><?=$this->transEsc('Search Tips')?></a></li>
+          <li><a href="<?=$this->url('content-page', ['page' => 'asklibrary']) ?>"><?=$this->transEsc('Ask a Librarian')?></a></li>
+          <li><a href="<?=$this->url('content-page', ['page' => 'faq']) ?>"><?=$this->transEsc('FAQs')?></a></li>
+        </ul>
+      <?=$this->slot('footer-right')->end(); ?>
+</div>
+    </div>
+  </div>
+</div>
+<!--Footer Bottom Area 2-->
+<div class="update_footer_bottom">
+    <div class="update_footer_bottom_content">
+      <div class="update_footer_bottom_copyright">
+        <p>Copyright © 2022 [Library Name]. All rights reserved.</p>
+      </div>
+      <div class="update_footer_bottom_social">
+        <ul>
+        <li><a href="#"><i class="fa fa-twitter" title="Journal"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram" title="Journal"></i></a></li>
+          <li><a href="#"><i class="fa fa-facebook" title="Journal"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<!--Footer Bottom Area 2 end-->
+
+
+
+  <div class="poweredby">
+    <?=$this->layout()->poweredBy ?>
+  </div>
+</footer>

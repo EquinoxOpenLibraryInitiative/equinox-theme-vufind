@@ -1,0 +1,119 @@
+
+<div class="channel_list_page_body_wraper">
+<?php
+  $this->headLink()->appendStylesheet('vendor/slick.css');
+  $this->headLink()->appendStylesheet('vendor/slick-theme.css');
+  $this->headScript()->appendFile('vendor/slick.min.js');
+  $this->headScript()->appendFile('channels.js');
+  $this->jsTranslations()->addStrings([
+    'channel_browse' => 'channel_browse',
+    'channel_expand' => 'channel_expand',
+    'channel_search' => 'channel_search',
+    'nohit_heading' => 'nohit_heading',
+    'View Record' => 'View Record',
+  ]);
+
+  $finalChannels = [];
+  $finalCount = 0;
+  foreach ($channels as $current) {
+      if (isset($current['contents'])) {
+          $finalChannels[] = $current;
+          $finalCount++;
+      } elseif ($finalCount > 0 && isset($current['token'])) {
+          $finalChannels[$finalCount - 1]['relatedTokens'][] = $current;
+      }
+  }
+?>
+
+<?php if (empty($token)): ?>
+  <form action="<?=$this->url('channels-search')?>" class="channel-search form-inline update_chanel_charch">
+  <p>
+    <?=$this->transEsc('channel_searchbox_label')?>
+  </p>
+
+
+
+  <div class="update_search_inputs">
+
+    <input type="text" name="lookfor" class="form-control" value="<?=$this->escapeHtmlAttr($this->lookfor) ?>"/>
+    <input type="submit" value="<?=$this->transEscAttr('Submit')?>" class="btn btn-default" />
+
+    <span class="update_top_search_iocn">
+        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.16185 3.43138C-0.783116 7.37634 -0.783116 13.7724 3.16185 17.7174C7.10681 21.6623 13.5029 21.6623 17.4478 17.7174C21.3928 13.7724 21.3928 7.37634 17.4478 3.43138C13.5029 -0.513585 7.10681 -0.513585 3.16185 3.43138ZM4.72145 4.99098C7.80507 1.90737 12.8046 1.90737 15.8882 4.99098C18.9718 8.0746 18.9718 13.0741 15.8882 16.1578C12.8046 19.2414 7.80507 19.2414 4.72145 16.1578C1.63783 13.0741 1.63783 8.0746 4.72145 4.99098Z" fill="#26547C"/>
+        <path d="M22.3633 20.6347L17.8093 16.0807C16.7695 15.041 15.2099 16.6006 16.2497 17.6403L20.8037 22.1943C21.8434 23.234 23.403 21.6744 22.3633 20.6347Z" fill="#26547C"/>
+        </svg>
+      </span>
+  </div>
+
+
+  </form>
+<?php endif; ?>
+
+<?php $insideButton = false; ?>
+<?php foreach ($finalChannels as $channel): ?>
+  <?php
+    $groupId = $channel['groupId'] ?? $channel['providerId'];
+    $channelID = 'channel-' . md5(serialize($channel));
+  ?>
+
+
+
+
+  <div class="channel-wrapper">
+
+
+
+
+
+    <div class="channel-title common_title_classs">
+      <h2><?=$this->escapeHtml($channel['title'])?></h2>
+    </div>
+
+    <?php if (count($channel['relatedTokens'] ?? []) > 0): ?>
+      <div class="channel-add-menu hidden common_title_classs" data-group="<?=$this->escapeHtmlAttr($groupId) ?>">
+        <button type="button" class="add-btn btn btn-link"><?=$this->transEsc('channel_add_more') ?></button><!--
+     --><button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <svg width="15" height="10" viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.50219 6.72664L13.2308 0.998047L14.8672 2.63446L7.50219 9.99946L0.137188 2.63446L1.7736 0.998047L7.50219 6.72664Z" fill="white"/>
+        </svg>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <?php foreach ($channel['relatedTokens'] as $related): ?>
+            <li><a href="<?=current(explode('?', $this->serverUrl(true)))?>?<?=empty($queryParams) ? '' : $this->escapeHtmlAttr($queryParams . '&')?>channelProvider=<?=urlencode($related['providerId']) ?>&amp;channelToken=<?=urlencode($related['token']) ?>&amp;layout=lightbox" data-token="<?=$related['token'] ?>"><?=$this->escapeHtml($this->truncate($related['title'], 100)) ?></a></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    <?php endif; ?>
+
+
+
+
+ 
+   
+
+
+    <div id="<?=$channelID ?>" class="channel" data-group="<?=$groupId ?>" data-link-json='<?=empty($channel['links']) ? '[]' : json_encode($channel['links']) ?>'>
+      <!-- Wrapper for slides -->
+      <?php foreach ($channel['contents'] as $index => $item): ?>
+        <?php $url = empty($item['routeDetails']) ? $this->recordLinker()->getUrl("{$item['source']}|{$item['id']}") : $this->url($item['routeDetails']['route'], $item['routeDetails']['params']); ?>
+        <a href="<?=$this->escapeHtmlAttr($url)?>" class="channel-record slide hidden" data-record-id="<?=$this->escapeHtmlAttr($item['id']) ?>" data-record-source="<?=$item['source'] ?>" title="<?=$this->escapeHtml($item['title'])?>">
+          <div class="thumb">
+            <img <?=$index < 6 ? "src" : "data-lazy" ?>="<?=$this->escapeHtmlAttr($item['thumbnail'] ? $item['thumbnail'] : $this->url('cover-unavailable'))?>"/>
+          </div>
+          <p class="channel-record-title"><?=$this->escapeHtml($item['title'])?></p>
+        </a>
+      <?php endforeach; ?>
+    </div>
+
+
+
+
+
+  </div>
+
+
+<?php endforeach; ?>
+
+</div>
