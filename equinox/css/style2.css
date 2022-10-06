@@ -8,7 +8,7 @@ footer {
 
 button,
 a {
-  outline: none !important;
+  /* outline: none !important; */
 }
 
 .update_footer_bottom_social ul li a:hover {
@@ -1527,6 +1527,7 @@ body.template-dir-channels .channel-add-menu .dropdown-menu {
 
 /* Code Start*/
 .home-facet.dewey-hundreds h2,
+.home-facet.callnumber-first h2,
 .home-facet.format h2,
 .home-facet.language h2,
 .home-facet.find-more h2 {
@@ -3094,7 +3095,7 @@ footer {
 
 button,
 a {
-  outline: none !important;
+/*  outline: none !important; */
 }
 
 .update_footer_bottom_social ul li a:hover {
@@ -4546,6 +4547,7 @@ body.template-dir-channels .channel-add-menu .dropdown-menu {
 
 /* Code Start*/
 .home-facet.dewey-hundreds h2,
+.home-facet.callnumber-first h2,
 .home-facet.format h2,
 .home-facet.language h2,
 .home-facet.find-more h2 {

@@ -289,7 +289,8 @@ select {
   transform: rotate(90deg);
 }
 
-.home-facet.dewey-hundreds h2 {
+.home-facet.dewey-hundreds h2,
+.home-facet.callnumber-first h2 {
   background-color: #27547d;
   color: #fff;
 }
@@ -347,10 +348,12 @@ select {
 .home-facet .home-facet-container.active {
   max-height: 500px;
 }
-.home-facet.dewey-hundreds .home-facet-container {
+.home-facet.dewey-hundreds .home-facet-container,
+.home-facet.callnumber-first .home-facet-container {
   background-color: #27547d;
   box-shadow: rgb(0 0 0 / 30%) 0px 5px 10px !important;
 }
+
 .home-facet.find-more ul {
   background-color: #243144;
 }
@@ -392,7 +395,8 @@ select {
   display: block;
   transition: 0.3s;
 }
-.home-facet.dewey-hundreds .home-facet-container ul li a {
+.home-facet.dewey-hundreds .home-facet-container ul li a,
+.home-facet.callnumber-first .home-facet-container ul li a {
   color: #fff;
 }
 
@@ -4311,7 +4315,7 @@ body.template-dir-record.template-name-view
   .tab-pane.holdings-tab.active
   .table.table-striped
   td {
-  width: 72% !important;
+  /* width: 72% !important; */
 }
 body.template-dir-record.template-name-view .media-body table tbody tr td,
 body.template-dir-record.template-name-view .media-body table tbody tr td a,
