@@ -55,9 +55,8 @@ JS;
           <div class="home-facet-container">
             <ul class="home-facet-list">
               <?php
-                // Special case: two columns for LC call numbers...
-                $maxListLength = $field == 'callnumber-first'
-                  ? $columnSize * 2 : $columnSize;
+                // Removed special case where LC is made 2-column
+                $maxListLength = $columnSize;
 
                 // Special case: custom URLs for collections...
                 $moreUrl = $field == 'hierarchy_top_title'
