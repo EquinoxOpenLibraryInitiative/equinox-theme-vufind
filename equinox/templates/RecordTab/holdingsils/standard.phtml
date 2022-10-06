@@ -5,11 +5,21 @@
     $checkILLRequest = $holding['checkILLRequest'] ?? false;
   ?>
   <tr vocab="http://schema.org/" typeof="Offer">
-    <th class="copy-number"><?=$this->transEsc("Copy")?> <?=$this->escapeHtml($holding['number'])?>
+<th>
+<?= $holding['acp']['circ_lib']['name'] ?>
+</th>
+<td>
+<?= $holding['callnumber'] ?>
+</td>
+    <td class="copy-number"><?=$this->escapeHtml($holding['number'])?>
+<?php if (count($holding['acp']['parts']) > 0): ?>
+ (<?= $holding['acp']['parts'][0]['label'] ?>)
+<?php endif ?>
+
       <?php if ($holding['enumchron'] ?? false): ?>
         <span class="enumchron">(<?=$this->escapeHtml($holding['enumchron'])?>)</span>
       <?php endif; ?>         
-    </th>
+    </td>
     <td>
       <?php if ($holding['reserve'] == "Y"): ?>
         <link property="availability" href="http://schema.org/InStoreOnly" />
