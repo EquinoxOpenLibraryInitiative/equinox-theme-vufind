@@ -1,7 +1,10 @@
 # equinox-theme-vufind
-Custom Equinox theme for VuFind
+Custom Equinox theme for VuFind.
 
-To install, copy the equinox directory to $VUFIND\_HOME/themes/
+Originally developed by Gregg Mckee as an adaptation of the stock
+`bootstrap3` theme.
+
+To install, copy the `equinox` directory to `$VUFIND\_HOME/themes/`
 
 # TODO
 1. Finish hooking up search home page to use channels instead of static images
