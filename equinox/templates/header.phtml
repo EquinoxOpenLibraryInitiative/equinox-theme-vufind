@@ -2,13 +2,14 @@
 <div class="top_header_content">
 <div class="banner container navbar">
   <div class="navbar-header">
-   <div class="mobile_navbar_new" style="display: inline-block">
+  <h1 class="site_logo"><a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="/vufind/themes/equinox/images/small/equinox-logo-white.svg" alt="Equinox"></a></h1>
+  
+  <div class="mobile_navbar_new" style="display: inline-block">
    <a href="<?php if(!$account->isLoggedIn()): ?>  <?=$this->url('myresearch-userlogin')?> <?php else: ?> <?=$this->url('myresearch-home', [], ['query' => ['redirect' => 0]])?><?php endif ?>" class="mobile_login_button"><?php if(!$account->isLoggedIn()): ?> Login<?php else: ?> Account<?php endif ?></a>
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-collapse" aria-hidden="true">
-      <i class="fa fa-bars"></i>
+      <i class="fa fa-bars"><span class="sr-only">Menu</span></i>
     </button>
    </div>
-    <a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="/vufind/themes/equinox/images/small/equinox-logo-white.svg" alt="Site Logo"></a>
   </div>
   <?php if (!isset($this->layout()->renderingError)): ?>
     <div class="collapse navbar-collapse" id="header-collapse">
@@ -26,30 +27,9 @@
                 <span class="full<?=!$cart->isFull() ? ' hidden' : '' ?>">(<?=$this->transEsc('bookbag_full') ?>)</span>
               </a>
             </li>
-
-
-             
-
           <?php endif; ?>
 
-
-
-
-        
-
-
-
-
-
-           
-
-
-
-
-
-
-
-          <!-- <?php if (isset($this->layout()->themeOptions) && count($this->layout()->themeOptions) > 1): ?>
+          <?php if (isset($this->layout()->themeOptions) && count($this->layout()->themeOptions) > 1): ?>
             <li class="theme dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->transEsc("Theme")?> <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -62,9 +42,9 @@
                 <?php endforeach; ?>
               </ul>
             </li>
-          <?php endif; ?> -->
+          <?php endif; ?>
 
-          <!-- <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1): ?>
+          <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1): ?>
             <li class="language dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->transEsc("Language")?> <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -77,7 +57,7 @@
                 <?php endforeach; ?>
               </ul>
             </li>
-          <?php endif; ?> -->
+          <?php endif; ?>
 
           <li><a href="#">Programs &amp; Services</a></li>
           <li><a href="#">Get a Library Card</a></li>
@@ -124,76 +104,22 @@
 
 </div>
 
-
-<?php
-
-$checktemplate = $this->templateName;
-
-if($checktemplate == "advanced"){
-
-
-?>
-
-
-<div class="welcome_banner_area_wrap"><!--Welcome Banner Area Start-->
-
-<div class="welcome_banner_content_wraper">
-		
-<div class="welcome_banner-right">
-  <img src="/vufind/themes/equinox/images/small/home-banner-logo.png" alt="banner Image">
-</div>
-</div>
-
-<img class="bannerbg" src="/vufind/themes/equinox/images/small/banner-imgs.jpg" alt="bannerbg">
-</div>
-
-
-<?php }?>
-
 <?php if ($this->layout()->searchbox !== false): ?>
   <div class="welcome_banner_area_wrap"><!--Welcome Banner Area Start-->
 
-<div class="welcome_banner_content_wraper">
-		
-<div class="welcome_banner-right">
-  <img src="/vufind/themes/equinox/images/small/home-banner-logo.png" alt="banner Image">
-</div>
-</div>
-
 <img class="bannerbg" src="/vufind/themes/equinox/images/small/banner-imgs.jpg" alt="bannerbg">
 </div>
 
-
-
-
-  <div class="search navbar search_wrapper">
-  <h2>Browse through all of the library’s resources</h2>
-    <div class="nav searchbox hidden-print" role="search">
+  <div class="search search_wrapper">
+    <div class="container searchbox hidden-print" role="search">
+      <h2><?=$this->transEsc("Browse through all of the library’s resources")?></h2>
       <?=$this->layout()->searchbox ?>
     </div>
   </div>
 <?php endif; ?>
 
-<?php 
-
-
-$checktemplate = "template-dir-".$this->templateDir." template-name-".$this->templateName;
-
-if($checktemplate == "template-dir-search template-name-home"){
-
-
-  $checkdisplay = "display: none!important";
-
-
-}
-
-
-?>
-
-<div class="search-home-facets" style="<?php echo $checkdisplay ?>">
-                              
-
-
+<div class="search-home-facets"> 
+  <div class="container">
         <div class="home-facet dewey-hundreds">
           <h2>
             Browse by Call Number            <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -241,12 +167,6 @@ End Dewey Browse -->
           </div>
         </div>
       
-
-
-
-
-                                          
-
 
         <div class="home-facet language">
           <h2>
@@ -315,7 +235,7 @@ End Dewey Browse -->
         <path d="M5.72859 7.36598L0 1.63739L1.63641 0.000976563L9.00141 7.36598L1.63641 14.731L0 13.0946L5.72859 7.36598Z" fill="white"></path>
         </svg>
       </h2>
-       <div class="home-facet-container" style="display: block;">
+       <div class="home-facet-container">
         <ul>
           <li><a href="/vufind/Browse/Home">Browse the Catalog</a></li>
           <li><a href="/vufind/Alphabrowse/Home">Browse Alphabetically</a></li>
@@ -325,5 +245,6 @@ End Dewey Browse -->
         </ul>
        </div>
      
+    </div>
     </div>
   </div>
