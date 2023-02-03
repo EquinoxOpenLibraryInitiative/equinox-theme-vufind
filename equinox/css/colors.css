@@ -1,0 +1,165 @@
+/* Font */
+/* 
+ * Notes on changing fonts
+ *
+ * Use a theme that supports tabular lining numerals for best results 
+ * with count badges and currency in table columns.
+ * [https://fonts.google.com/knowledge/introducing_type/understanding_numerals]
+ * 
+ * Use an alternate font for --brand-fonts-proportional if the brand font does 
+ * not support tabular numerals.
+ *
+ * When in doubt, use the System Font Stack
+ * [https://devhints.io/css-system-font-stack]
+ *
+/**/
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Colors */
+/* 
+ * Notes on changing colors
+ * 
+ * Link colors in body text must pass the WebAIM Link Color Checker 
+ * [https://webaim.org/resources/linkcontrastchecker/] to ensure
+ * links can be distinguished from the text color. Test the default
+ * color as well as the hover, focus, and active states along with 
+ * their respective background colors (if different). Every combination
+ * of text and background color must pass the WCAG AA standard (a 4.5 
+ * contrast ratio).
+ * 
+/**/
+
+:root {
+    --system-fonts: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+
+    --brand-fonts: Cabin, sans-serif;
+    --brand-fonts-proportional: var(--system-fonts);
+
+    --accent-one: #27547d;
+    --accent-one-hover: #2a7aC0;
+    --accent-two: #0a5fab;
+    --accent-two-hover: #1d5586;
+    --accent-three: #c8d96f;
+    --accent-three-hover: #aac05e;
+    --accent-four: #243144;
+    --accent-four-hover: #1f6bac;
+
+    --blue-20: #f9fcff;
+    --blue-25: #F6F8FC;
+    --neutral-250: #dde7ef;
+
+    /* borrowed from Tailwind Blue */
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-200: #bfdbfe;
+    --blue-300: #93c5fd;
+    --blue-400: #60a5fa;
+    --blue-500: #3b82f6;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --blue-800: #1e40af;
+    --blue-900: #1e3a8a;
+
+    /* borrowed from Tailwind Slate */
+    --neutral-50: #F8FAFC;
+    --neutral-100: #f1f5f9;
+    --neutral-200: #e2e8f0;
+    --neutral-300: #cbd5e1;
+    --neutral-400: #94a3b8;
+    --neutral-500: #64748b;
+    --neutral-600: #475569;
+    --neutral-700: #334155;
+    --neutral-800: #1e293b;
+    --neutral-900: #0f172a;
+
+    /* Tailwind Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --shadow-none: 0 0 #0000;
+    --text-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+
+    --main-color: #0e1f4e;
+    --main-color-reverse: #fff;
+    --main-bg: #fff;
+    --search-bg: #e6ebf4;
+    --channel-bg: #fff;
+    --results-bg: var(--blue-20);
+    --sidebar-bg: var(--blue-20);
+    --sidebar-border: var(--neutral-250);
+
+    /* Columns and alternating table rows */
+    --alt-bg: var(--blue-50);
+    --alt-bg-hover: var(--blue-100);
+    --main-border: var(--blue-300);
+    --soft-border: #bce8f1;
+
+    --link-color-primary: #0a5fab;
+    --link-color-primary-hover: #2a7aC0;
+    --link-color-alt: #243144; /* for use on light accent color backgrounds */
+    --link-color-alt-hover: #1f6bac;
+    --link-color-search: #26547c;
+    --link-color-accent: var(--accent-three);
+    --link-color-accent-hover: var(--accent-three-hover);
+    --link-color-reverse: #fff;
+    --link-color-reverse-hover: var(--alt-bg-hover);
+    --link-color-reverse-alt: var(--alt-bg-hover);
+    --link-color-reverse-alt-hover: var(--main-border);
+
+    --nav-hover-bg: rgba(255,255,255,0.04);     /* do not go above 0.04 without lightening the green */
+
+    --focus-ring: var(--blue-700);
+    --focus-ring-alt: var(--accent-three);
+    --focus-highlight: #ffffde;
+    --search-highlight: var(--warning-bg);        /* Alternative: #FFFFB2; */
+    --carousel-overlay: rgba(10,95,171,0.8);    /* #0a5fab as RGB */
+
+    --primary-bg: var(--accent-one);
+    --secondary-bg: var(--blue-100);
+    --secondary-bg-hover: var(--blue-200);
+    --button-bg: var(--blue-100);
+    --button-bg-light: var(--blue-50);
+    --button-bg-dark: var(--blue-200);
+
+    --success-color: #358717;
+    --success-color-dark: #1B5D0C;
+    --success-bg: #c8d96f;
+    --success-border: #5B7e32;
+
+    --warning-color: #b45309;
+    --warning-color-dark: #78350f;
+    --warning-bg: #F8E8A6;
+    --warning-border: #f59e0b;
+
+    --danger-color: #a00;
+    --danger-bg: #f7d0d4;
+    --danger-bg-hover: #f6c9ce;
+    --danger-border: #dc3545;
+
+    --form-text: var(--accent-one);
+    --form-border: var(--soft-border);
+    --form-accent: var(--accent-two);
+    --form-accent-hover: var(--accent-two-hover);
+    --form-slider-bg: var(--blue-100);
+    --form-slider-border: var(--blue-400);
+
+    --facet-badge-bg: var(--blue-200);
+    --facet-badge-border: var(--soft-border);
+
+    --footer-link-color: var(--blue-100);
+    --footer-link-color-hover: var(--blue-200);
+    --footer-link-color-focus: var(--blue-300);
+
+    --subfooter-bg: var(--accent-three);
+    --subfooter-color: var(--main-color);
+    --subfooter-link-color: var(--link-color-alt);
+    --subfooter-link-color-hover: var(--link-color-alt-hover);
+    --subfooter-focus-ring: var(--link-color-alt);
+}
