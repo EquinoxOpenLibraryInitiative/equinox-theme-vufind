@@ -3,30 +3,29 @@
   $saveSupported = $this->accountCapabilities()->getSavedSearchSetting() === 'enabled';
 ?>
 
-
-
-
-<div class="save_search_table_wraper">
 <table class="search-history-table" id="<?=$this->showSaved ? 'saved-searches' : 'recent-searches'?>">
+  <thead>  
   <tr>
-    <th width="20%"><?=$this->transEsc("history_time")?></th>
-    <th><?=$this->transEsc("history_search")?></th>
-    <th><?=$this->transEsc("history_limits")?></th>
-    <th><?=$this->transEsc("history_results")?></th>
+    <th class="history_time"><?=$this->transEsc("history_time")?></th>
+    <th class="history_search"><?=$this->transEsc("history_search")?></th>
+    <th class="history_limits"><?=$this->transEsc("history_limits")?></thc>
+    <th class="history_results"><?=$this->transEsc("history_results")?></th>
     <?php if ($scheduleSupported): ?><th class="search-schedule-header"><?=$this->transEsc('history_schedule')?></th><?php endif; ?>
-    <?php if ($saveSupported): ?><th><?=$this->transEsc($this->showSaved ? "history_delete" : "history_save")?></th><?php endif; ?>
+    <?php if ($saveSupported): ?><th class="history_actions"><?=$this->transEsc($this->showSaved ? "history_delete" : "history_save")?></th><?php endif; ?>
   </tr>
+  </thead>
+  <tbody>
   <?php foreach (($this->showSaved ? array_reverse($this->saved) : array_reverse($this->unsaved)) as $iteration => $info): ?>
     <tr class="<?=$iteration % 2 == 1 ? 'even' : 'odd'?>row">
-      <td><?=$this->escapeHtml($this->dateTime()->convertToDisplayDateAndTime("U", $info->getStartTime()))?></td>
-      <td>
+      <td class="history_time"><?=$this->escapeHtml($this->dateTime()->convertToDisplayDateAndTime("U", $info->getStartTime()))?></td>
+      <td class="history_search">
         <?=$this->historylabel($info->getParams()->getSearchClassId())?>
         <a href="<?=$this->url($info->getOptions()->getSearchAction()) . $info->getUrlQuery()->getParams()?>"><?php
           $desc = $info->getParams()->getDisplayQuery();
           echo empty($desc) ? $this->transEsc("history_empty_search") : $this->escapeHtml($desc);
         ?></a>
       </td>
-      <td>
+      <td class="history_limits">
         <?php foreach ($info->getParams()->getFilterList(true) as $field => $filters): ?>
           <?php foreach ($filters as $i => $filter): ?>
             <?php if ($filter['operator'] == 'NOT') echo $this->transEsc('NOT') . ' '; if ($filter['operator'] == 'OR' && $i > 0) echo $this->transEsc('OR') . ' '; ?>
@@ -39,9 +38,9 @@
           <?php endif; ?>
         <?php endforeach; ?>
       </td>
-      <td><?=$this->escapeHtml($this->localizedNumber($info->getResultTotal()))?></td>
+      <td class="history_results"><?=$this->escapeHtml($this->localizedNumber($info->getResultTotal()))?></td>
       <?php if ($scheduleSupported): ?>
-        <td>
+        <td class="search-schedule-header">
         <?php if (isset($this->schedule[$info->getSearchId()])): ?>
           <?php $schedule = $this->schedule[$info->getSearchId()]; ?>
             <form class="form-inline jumpMenuForm" action="<?= $this->url('myresearch-savesearch')?>" method="get" name="schedule">
@@ -58,7 +57,7 @@
         </td>
       <?php endif; ?>
       <?php if ($saveSupported): ?>
-        <td>
+        <td class="history_actions">
           <?php if ($this->showSaved): ?>
             <a href="<?=$this->url('myresearch-savesearch')?>?delete=<?=urlencode($info->getSearchId())?>&amp;mode=history" class="text-danger">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,8 +71,5 @@
       <?php endif; ?>
     </tr>
   <?php endforeach; ?>
+  </tbody>
 </table>
-</div>
-
-
-
