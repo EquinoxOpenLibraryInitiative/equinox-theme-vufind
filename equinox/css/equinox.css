@@ -720,9 +720,33 @@ th {
 .btn-default:active:hover,
 .open>.dropdown-toggle.btn-default.focus,
 .open>.dropdown-toggle.btn-default:focus,
-.open>.dropdown-toggle.btn-default:hover {
+.open>.dropdown-toggle.btn-default:hover,
+.btn-group .btn-primary,
+.btn-group .btn-primary:active, 
+.btn-group .btn-primary.active, 
+.btn-group .open > .dropdown-toggle.btn-primary, 
+.btn-group .btn-primary:active, 
+.btn-group .btn-primary.active, 
+.btn-group .open > .dropdown-toggle.btn-primary, 
+.btn-group .btn-primary:active, 
+.btn-group .btn-primary.active, 
+.btn-group .open > .dropdown-toggle.btn-primary {
     background-color: var(--button-bg-light);
     border: 1px solid var(--main-border);
+    color: var(--main-color);
+}
+
+.btn-group .btn-primary:active:hover, 
+.btn-group .btn-primary.active:hover,
+.btn-group .open > .dropdown-toggle.btn-primary, 
+.btn-group .open > .dropdown-toggle.btn-primary:hover, 
+.btn-group .btn-primary:active:focus, 
+.btn-group .btn-primary.active:focus, 
+.btn-group .open > .dropdown-toggle.btn-primary:focus, 
+.btn-group .btn-primary:active.focus, 
+.btn-group .btn-primary.active.focus, 
+.btn-group .open > .dropdown-toggle.btn-primary.focus {
+    background-color: var(--button-bg-dark);
     color: var(--main-color);
 }
 
@@ -1317,6 +1341,18 @@ a.browse-item.with-badge .badge {
     position: static;
     float: right;
     margin: 0;
+}
+
+/* Browse Alphabetically */
+
+#alphaBrowseForm {
+    margin: 24px;
+}
+
+/* Browse New */
+
+.form-search-newitem .form-group {
+    display: inline-block;
 }
 
 /* Slider */
