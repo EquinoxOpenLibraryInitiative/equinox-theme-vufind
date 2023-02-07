@@ -1304,6 +1304,10 @@ footer a:focus {
 
 /* Browse List */
 
+.browse-container {
+    margin-bottom: 24px;
+    align-items: flex-start;
+}
 .browse-list {
     padding-right: 0;
     box-shadow: var(--shadow-xl);
