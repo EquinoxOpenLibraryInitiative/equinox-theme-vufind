@@ -2,9 +2,10 @@
 
   // Set up query
   $lookfor = $this->results->getUrlQuery()->isQuerySuppressed() ? '' : $this->params->getDisplayQuery();
+  $headTitle = $this->translate('Search Results') . (empty($lookfor) ? '' : " - {$lookfor}");
+  // Normally we would assign the title to its slot and set $this->headTitle here
+  // Instead we will do so at the end of the file so we can capture errors and no result messages
 
-  // Normally we would set up page title here, but we'll set it at the end instead so we can grab the number of results efficiently
-  
   // Set up search box:
   $this->layout()->searchbox = $this->context($this)->renderInContext(
       'search/searchbox.phtml',
