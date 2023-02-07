@@ -4,18 +4,8 @@ return [
     'css' => [
         'colors.css',
         'equinox.css',
-        //'vendor/bootstrap.min.css',
-        //'vendor/bootstrap-accessibility.css',
-        //'vendor/font-awesome.min.css',
-        //'bootstrap-custom.css',
-        //'compiled.css',
-        //'style.css',
-        //'style2.css',
-        //'owl.carousel.min.css',
-        //'owl.theme.default.css',
         'print.css:print',
         'flex-fallback.css::lt IE 10', // flex polyfill
-        //'responsive.css'
     ],
     'js' => [
         /**
@@ -42,8 +32,6 @@ return [
          * - 'example.js:lt IE 10' => same as
          *   ['file' => 'example.js', 'conditional' => 'lt IE 10']
          */
-       //['file' => 'owl.carousel.min.js'],
-       //['file' => 'customscript.js'],
         ['file' => 'facet-expand.js', 'priority' => 200],
         ['file' => 'vendor/jquery.min.js', 'priority' => 110],
         ['file' => 'vendor/bootstrap.min.js', 'priority' => 120],
