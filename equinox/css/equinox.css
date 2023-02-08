@@ -1417,21 +1417,36 @@ a.browse-item.with-badge .badge {
     background: var(--accent-one-hover);
 }
     
-/* Carousel */
+/* Channels and Carousels */
 
-.carousel-control.left,
-.carousel-control.right {
-    background-image: none;
+.channel-title .dropdown button {
+    color: var(--main-color);
+    opacity: .75; /* match carousel controls */
 }
 
-a.carousel-control:focus {
+.channel .slick-next,
+.channel .slick-prev {
+    height: 24px;
+    width: 24px;
+}
+
+.channel .slick-next .slick-next-icon::before, 
+.channel .slick-next .slick-prev-icon::before, 
+.channel .slick-prev .slick-next-icon::before, 
+.channel .slick-prev .slick-prev-icon::before,
+.channel .slick-prev::before,
+.channel .slick-next::before {
+    color:var(--accent-one);
+    font-size: 24px;
+}
+
+.channel .slick-prev:focus,
+.channel .slick-prev:focus-visible,
+.channel .slick-next:focus,
+.channel .slick-next:focus-visible {
     outline: 2px solid var(--focus-ring);
-    background: none;
-    box-shadow: none;
-}
-
-a.carousel-control:focus span {
-    text-shadow: var(--text-shadow);
+    outline-offset: 2px;
+    border-radius: 12px;
 }
 
 #similar-items-carousel .hover-overlay .content {
