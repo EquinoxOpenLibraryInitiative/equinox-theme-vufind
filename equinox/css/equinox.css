@@ -1470,7 +1470,32 @@ a.browse-item.with-badge .badge {
      margin-top: 0;
      margin-right: 24px;
 }
-    
+
+/* Fallback Covers (SVG fills) */
+
+.vufind-fallback-cover {
+    max-width: 65%;
+    display: block;
+}
+
+.vufind-fallback-cover .pages {
+    fill: var(--fallback-cover-pages);
+}
+
+.vufind-fallback-cover .spine {
+    fill: var(--fallback-cover-spine);
+}
+
+.vufind-fallback-cover .cover {
+    fill: var(--fallback-cover-fill);
+    stroke: var(--fallback-cover-stroke);
+    stroke-width: 2px;
+}
+
+.vufind-fallback-cover .edges {
+    fill: var(--fallback-cover-edges);
+}  
+
 /* Media Queries */
     
 /* restore two-column layout for search history */
