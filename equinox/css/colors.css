@@ -162,4 +162,10 @@
     --subfooter-link-color: var(--link-color-alt);
     --subfooter-link-color-hover: var(--link-color-alt-hover);
     --subfooter-focus-ring: var(--link-color-alt);
+
+    --fallback-cover-fill: var(--neutral-100);
+    --fallback-cover-stroke: var(--neutral-300);
+    --fallback-cover-spine: var(--neutral-300);
+    --fallback-cover-edges: var(--neutral-250);
+    --fallback-cover-pages: var(--neutral-100);
 }
