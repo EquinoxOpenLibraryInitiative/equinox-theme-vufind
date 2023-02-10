@@ -1039,12 +1039,21 @@ footer a:focus {
     color: var(--danger-color);
 }
 
-.adv-group {
+.adv-group, #groupPlaceHolder {
     border: none;
+    padding: 12px;
+}
+
+.adv-group .form-control {
+    border-color: var(--neutral-250);
 }
 
 .adv-group:nth-child(2n+1) {
     background-color: var(--alt-bg);
+}
+
+.adv-group:nth-child(2n+1) .form-control {
+    border-color: var(--form-border);
 }
 
 /* Facets */
@@ -1186,10 +1195,10 @@ footer a:focus {
 
 /* Facet Menus */
 
-.search-home-facets .dropdown { 
+.home-facet-list { 
     display: none;
     position: absolute;
-    z-index: 10;
+    z-index: 5;
     box-shadow: var(--shadow-xl);
 }
 
@@ -1209,97 +1218,112 @@ footer a:focus {
 
 .home-facet {
     color: var(--link-color-reverse);
-    box-shadow: var(--shadow-xl);
 }
 
-.home-facet h2,
-.solr-adv-facet h2 {
+.home-facet button,
+.solr-adv-facet button {
+    box-shadow: var(--shadow-xl);
+    border: none;
+    display: block;
     font-size: 1.125em;
     margin: 0;
     padding: 16px;
-    box-shadow: var(--shadow-xl);
+    position: relative;  
+    text-align: left;
+    width: 100%;
+    z-index: 10;
 }
 
-.home-facet h2 svg {
+.home-facet button svg {
     display: none;
 }
 
-.home-facet h2:focus {
+.home-facet button:focus {
     outline: 2px solid var(--focus-ring);
 }
 
-.home-facet h2::after,
-.solr-adv-facet h2::after {
+.home-facet button span::after,
+.solr-adv-facet button span::after {
     display: block;
     float: right;
     content:"\f107";
     font: normal normal bold 1em/1.2 FontAwesome;
+    margin-left: 2ch;
 }
     
-.home-facet h2[aria-expanded="false"]::after,
-.solr-adv-facet h2[aria-expanded="false"]::after {
+.home-facet.open button span::after,
+.solr-adv-facet.open button span::after {
     content:"\f106";
 }
 
-.home-facet-container {
-    padding: 16px;
+.home-facet-list.dropdown-menu {
+    border: none;
+    margin: 0;
+    padding: 8px 0;
 }
 
-.home-facet a {
-    display: block;
+.home-facet ul,
+.solr-adv-facet ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.home-facet .dropdown-menu > li > a {
     color: var(--link-color-reverse);
+    padding: 3px 12px;
 }
 
-.home-facet a:focus {
-    background-color: rgba(0,0,0,0.3);
+.home-facet .dropdown-menu > li > a:hover,
+.home-facet .dropdown-menu > li > a:active {
+    background-color: rgba(255,255,255,0.15);
+}
+
+.home-facet .dropdown-menu > li > a:focus {
+    background-color: rgba(255,255,255,0.15);
     outline: 2px solid var(--focus-ring-alt);
-    outline-offset: 3px;
+    outline-offset: 3px 0;
 }
 
 /* Cycles through the four accent colors. */
-.home-facet:nth-of-type(4n+1),
-.home-facet:nth-of-type(4n+1) .dropdown {
+.home-facet:nth-of-type(4n+1) button,
+.home-facet:nth-of-type(4n+1) .home-facet-list {
     /* first box */
     background-color: var(--accent-one);
 }
 
-.home-facet:nth-of-type(4n+2),
-.home-facet:nth-of-type(4n+2) .dropdown {
+.home-facet:nth-of-type(4n+2) button,
+.home-facet:nth-of-type(4n+2) .home-facet-list {
     /* second box */
     background-color: var(--accent-two);
 }
 
-.home-facet:nth-of-type(4n+3),
-.home-facet:nth-of-type(4n+3) .dropdown {
+.home-facet:nth-of-type(4n+3) button,
+.home-facet:nth-of-type(4n+3) .home-facet-list {
     /* third box */
     background-color: var(--accent-three);
     color: var(--accent-four);
 }
 
 /* This one is lighter and needs darker links */
-.home-facet:nth-of-type(4n+3) a {
+.home-facet:nth-of-type(4n+3) .dropdown-menu > li > a {
     color: var(--accent-four);
 }
 
-.home-facet:nth-of-type(4n+4),
-.home-facet:nth-of-type(4n+4) .dropdown {
+.home-facet:nth-of-type(4n+3) .dropdown-menu > li > a:hover,
+.home-facet:nth-of-type(4n+3) .dropdown-menu > li > a:active {
+    color: var(--accent-four);
+}
+
+.home-facet:nth-of-type(4n+3) .dropdown-menu > li > a:focus {
+    color: var(--accent-four);
+    outline: 2px solid var(--focus-ring);
+}
+
+.home-facet:nth-of-type(4n+4) button,
+.home-facet:nth-of-type(4n+4) .home-facet-list {
     /* fourth box */
     background-color: var(--accent-four);
-}
-
-/* fa-angle-right */
-/*
-.home-facet h2::after,
-.solr-adv-facet h2::after { 
-    font-family: "Font Awesome";
-    content: "\f105"; 
-}
-/**/
-
-.home-facet ul,
-.solr-adv-facet ul {
-    list-style: none;
-    padding-left: 0;
 }
 
 /* Browse List */
