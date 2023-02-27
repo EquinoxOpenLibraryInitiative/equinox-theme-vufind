@@ -30,5 +30,5 @@ Boston, MA 02110-1301 USA
 
 Includes the following components from other projects:
 
-* accessible-slick (https://github.com/Accessible360/accessible-slick)
+* [accessible-slick](https://github.com/Accessible360/accessible-slick)
   licensed under the MIT license
