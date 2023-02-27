@@ -4,7 +4,7 @@ Custom Equinox theme for [VuFind®](https://vufind.org/vufind/).
 This theme is based on the stock `bootstrap3` theme and includes
 various accessibility improvements.
 
-To install, copy the `equinox` directory to `$VUFIND\_HOME/themes/`.
+To install, copy the `equinox` directory to `$VUFIND_HOME/themes/`.
 
 # Authorship
 
