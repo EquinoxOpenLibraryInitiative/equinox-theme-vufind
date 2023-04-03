@@ -2,6 +2,7 @@
 return [
     'extends' => 'bootstrap3',
     'css' => [
+        'fonts.css',
         'colors.css',
         'equinox.css',
         'print.css:print',
