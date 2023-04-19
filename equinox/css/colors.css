@@ -19,7 +19,11 @@
 
 /* Font */
 /* 
- * Notes on changing fonts
+ *
+ * This theme uses a locally-hosted copy of the Cabin Font (from Google
+ * Fonts) by default - see fonts.css.
+ * 
+ * Notes on changing fonts:
  *
  * Use a theme that supports tabular lining numerals for best results 
  * with count badges and currency in table columns.
@@ -32,7 +36,6 @@
  * [https://devhints.io/css-system-font-stack]
  *
 /**/
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /* Colors */
 /* 
