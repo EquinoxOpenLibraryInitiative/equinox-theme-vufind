@@ -2,7 +2,7 @@
 <div class="top_header_content">
 <div class="banner container navbar">
   <div class="navbar-header">
-  <h1 class="site_logo"><a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="/vufind/themes/equinox/images/small/vufind-logo-white.svg" alt="VuFind"></a></h1>
+  <h1 class="site_logo"><a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="/vufind/themes/equinox/images/small/vufind-logo-vector-white.svg" alt="VuFind"></a></h1>
   
   <div class="mobile_navbar_new" style="display: inline-block">
    <a href="<?php if(!$account->isLoggedIn()): ?>  <?=$this->url('myresearch-userlogin')?> <?php else: ?> <?=$this->url('myresearch-home', [], ['query' => ['redirect' => 0]])?><?php endif ?>" class="mobile_login_button"><?php if(!$account->isLoggedIn()): ?> Login<?php else: ?> Account<?php endif ?></a>
