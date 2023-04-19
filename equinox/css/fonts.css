@@ -5,7 +5,7 @@
         font-family: "Cabin";
         font-style: normal;
         font-weight: 400;
-        src: url("../vendor/fonts/cabin-v26-latin-regular.woff2") format("woff2"),
+        src: url("./vendor/fonts/cabin-v26-latin-regular.woff2") format("woff2"),
                 /* Chrome 36+, Opera 23+, Firefox 39+ */
                 url("../vendor/fonts/cabin-v26-latin-regular.woff") format("woff");
         /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
@@ -18,9 +18,9 @@
         font-family: "Cabin";
         font-style: italic;
         font-weight: 400;
-        src: url("../vendor/fonts/cabin-v26-latin-italic.woff2") format("woff2"),
+        src: url("./vendor/fonts/cabin-v26-latin-italic.woff2") format("woff2"),
                 /* Chrome 36+, Opera 23+, Firefox 39+ */
-                url("../vendor/fonts/cabin-v26-latin-italic.woff") format("woff");
+                url("./vendor/fonts/cabin-v26-latin-italic.woff") format("woff");
         /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
@@ -31,9 +31,9 @@
         font-family: "Cabin";
         font-style: normal;
         font-weight: 500;
-        src: url("../vendor/fonts/cabin-v26-latin-500.woff2") format("woff2"),
+        src: url("./vendor/fonts/cabin-v26-latin-500.woff2") format("woff2"),
                 /* Chrome 36+, Opera 23+, Firefox 39+ */
-                url("../vendor/fonts/cabin-v26-latin-500.woff") format("woff");
+                url("./vendor/fonts/cabin-v26-latin-500.woff") format("woff");
         /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
@@ -44,9 +44,9 @@
         font-family: "Cabin";
         font-style: italic;
         font-weight: 500;
-        src: url("../vendor/fonts/cabin-v26-latin-500italic.woff2") format("woff2"),
+        src: url("./vendor/fonts/cabin-v26-latin-500italic.woff2") format("woff2"),
                 /* Chrome 36+, Opera 23+, Firefox 39+ */
-                url("../vendor/fonts/cabin-v26-latin-500italic.woff") format("woff");
+                url("./vendor/fonts/cabin-v26-latin-500italic.woff") format("woff");
         /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
@@ -57,9 +57,9 @@
         font-family: "Cabin";
         font-style: normal;
         font-weight: 600;
-        src: url("../vendor/fonts/cabin-v26-latin-600.woff2") format("woff2"),
+        src: url("./vendor/fonts/cabin-v26-latin-600.woff2") format("woff2"),
                 /* Chrome 36+, Opera 23+, Firefox 39+ */
-                url("../vendor/fonts/cabin-v26-latin-600.woff") format("woff");
+                url("./vendor/fonts/cabin-v26-latin-600.woff") format("woff");
         /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
@@ -70,8 +70,8 @@
         font-family: "Cabin";
         font-style: italic;
         font-weight: 600;
-        src: url("../vendor/fonts/cabin-v26-latin-600italic.woff2") format("woff2"),
+        src: url("./vendor/fonts/cabin-v26-latin-600italic.woff2") format("woff2"),
                 /* Chrome 36+, Opera 23+, Firefox 39+ */
-                url("../vendor/fonts/cabin-v26-latin-600italic.woff") format("woff");
+                url("./vendor/fonts/cabin-v26-latin-600italic.woff") format("woff");
         /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
