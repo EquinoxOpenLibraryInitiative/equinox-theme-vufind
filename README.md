@@ -32,3 +32,5 @@ Includes the following components from other projects:
 
 * [accessible-slick](https://github.com/Accessible360/accessible-slick)
   licensed under the MIT license
+* [Cabin font from Google Fonts](https://fonts.google.com/specimen/Cabin)
+  licensed under the SIL Open Font License (OFL)
