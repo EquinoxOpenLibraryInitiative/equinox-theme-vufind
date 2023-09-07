@@ -3,13 +3,13 @@
 $lookfor = $this->results->getUrlQuery()->isQuerySuppressed() ? '' : $this->params->getDisplayQuery();
 if (isset($this->parseError)):
   $headTitleText = $this->transEsc('nohit_parse_error');
-elseif ($recordTotal < 1):
+elseif ($this->results->getResultTotal() < 1):
   $headTitleText = rtrim($this->transEsc('nohit_heading'), '!') . ': ' . $this->params->getDisplayQuery();
 else:
   $transParams = [
     '%%start%%' => $this->localizedNumber($this->results->getStartRecord()),
     '%%end%%' => $this->localizedNumber($this->results->getEndRecord()),
-    '%%total%%' => $this->localizedNumber($this->recordTotal),
+    '%%total%%' => $this->localizedNumber($this->results->getResultTotal()),
     '%%lookfor%%' => $this->escapeHtml($this->lookfor)
   ];
   $headTitleText = $this->translate(
